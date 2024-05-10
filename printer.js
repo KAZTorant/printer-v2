@@ -66,6 +66,7 @@ app.post("/print", (req, res) => {
       .align('lt') // Left-aligned
       .style('IU') // Normal style
       .text(dataModified)
+      .size(1,1)
       .cut()
       .close();
       
