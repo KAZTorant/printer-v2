@@ -10,6 +10,9 @@ const port = process.env.PORT || 3000; // Read port from environment variable
 // Initialize the express-fileupload middleware
 app.use(fileUpload());
 
+// Set up your thermal printer with USB connection
+const device = new escposUSB();
+const printer = new escpos.Printer(device);
 
 const replacements = {
   'Ü': 'U',
@@ -50,12 +53,7 @@ app.post("/print", (req, res) => {
 
   // Convert the file content to a string in UTF-8 encoding
   const data = uploadedFile.data.toString("utf8");
-
   const dataModified = replaceSymbols(data);
-
-  // Set up your thermal printer with USB connection
-  const device = new escposUSB();
-  const printer = new escpos.Printer(device);
 
   // Send the text to the printer using the configured encoding
   device.open((err) => {
@@ -96,10 +94,6 @@ app.post("/print-line-by-line", (req, res) => {
   const dataModified = replaceSymbols(data);
   const lines = dataModified.split('\n');
 
-  // Set up your thermal printer with USB connection
-  const device = new escposUSB();
-  const printer = new escpos.Printer(device);
-  
   // Send the text to the printer line by line with styling
   device.open((err) => {
     if (err) {
