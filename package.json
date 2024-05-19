@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon printer.js"
+    "start": "nodemon printer.js",
+    "server": "PORT=3003 nodemon printer.js"
   },
   "author": "",
   "license": "ISC",
