@@ -107,6 +107,7 @@ app.post("/print-line-by-line", (req, res) => {
         .align('lt') // Left-aligned for each line
         .style('normal') // Normal style for each line
         .text(line)
+        .size(1,1)
         .feed(1); // Add space after each line
     });
 
